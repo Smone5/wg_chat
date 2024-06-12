@@ -132,7 +132,9 @@ function App() {
     setIsSending(true);
 
     try {
-      const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/invoke', {
+      //const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/invoke', {
+        const response = await fetch('https://white-sea-0302f2d0f.5.azurestaticapps.net/invoke', {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -8,19 +8,27 @@ function App() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [idToken, setIdToken] = useState(null); // State to store ID token
+  const [idToken, setIdToken] = useState(null);
+  const [retryCount, setRetryCount] = useState(0); // Track retries for login
   const navigate = useNavigate();
+
+  const maxRetries = 3;
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-n6c23g65pk6q7npmbur70ifl75jpmcn8.apps.googleusercontent.com', // Replace with your actual Client ID
+      client_id: '88973414867-n6c23g65pk6q7npmbur70ifl75jpmcn8.apps.googleusercontent.com',
       callback: (response) => {
         if (response.credential) {
           setIsLoggedIn(true);
-          setIdToken(response.credential); // Save the ID token
+          setIdToken(response.credential);
           navigate('/chat');
+          setRetryCount(0); // Reset retry count on successful login
+        } else if (retryCount < maxRetries) {
+          setRetryCount(retryCount + 1);
+          initGoogleSignIn();
         } else {
           setIsLoggedIn(false);
+          alert('Failed to log in. Please try again later.');
         }
       },
     });
@@ -28,7 +36,7 @@ function App() {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' }
     );
-  }, [navigate]);
+  }, [navigate, retryCount]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -37,7 +45,17 @@ function App() {
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
-  }, [initGoogleSignIn]);
+
+    const checkTokenValidity = setInterval(() => {
+      // Check if token is still valid, this is just a placeholder logic
+      if (!idToken) {
+        setIsLoggedIn(false);
+        alert('Your session has expired. Please log in again.');
+      }
+    }, 60000); // Check every 60 seconds
+
+    return () => clearInterval(checkTokenValidity);
+  }, [initGoogleSignIn, idToken]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +74,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${idToken}`, // Pass the ID token
+          'Authorization': `Bearer ${idToken}`,
         },
         body: JSON.stringify({
           input: { human_input: userMessage },

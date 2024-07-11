@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { useNavigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import Markdown from 'markdown-to-jsx';
 
@@ -232,44 +231,46 @@ function App() {
   };
 
   return (
-    <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-        {isLoggedIn ? (
-          <>
-            <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
-            <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-              {messages.map((msg, index) => (
-                <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
-                  <Markdown options={markdownOptions}>{msg.text}</Markdown>
-                </div>
-              ))}
-              <div ref={messagesEndRef} />
+    <Router>
+      <div className="d-flex flex-column vh-100" style={chatStyle}>
+        <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+          {isLoggedIn ? (
+            <>
+              <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
+              <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+                {messages.map((msg, index) => (
+                  <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
+                    <Markdown options={markdownOptions}>{msg.text}</Markdown>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
+                <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+              </div>
+              <form onSubmit={handleSubmit} className="input-group mt-2">
+                <input
+                  type="text"
+                  placeholder="Type a message..."
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="form-control"
+                  style={{ borderRadius: '20px 0 0 20px', borderColor: '#0071ce', padding: '10px' }}
+                />
+                <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
+              </form>
+            </>
+          ) : (
+            <div className="text-center mt-5">
+              <h2 style={{ color: '#0071ce' }}>Unofficial Walgreens Chatbot</h2>
+              <p>Welcome to the Unofficial Walgreens Chatbot. This platform allows you to interact with a chatbot designed to assist you with various Walgreens-related inquiries and services. Please log in to continue.</p>
+              <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center' }}></div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
-            </div>
-            <form onSubmit={handleSubmit} className="input-group mt-2">
-              <input
-                type="text"
-                placeholder="Type a message..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="form-control"
-                style={{ borderRadius: '20px 0 0 20px', borderColor: '#0071ce', padding: '10px' }}
-              />
-              <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
-            </form>
-          </>
-        ) : (
-          <div className="text-center mt-5">
-            <h2 style={{ color: '#0071ce' }}>Unofficial Walgreens Chatbot</h2>
-            <p>Welcome to the Unofficial Walgreens Chatbot. This platform allows you to interact with a chatbot designed to assist you with various Walgreens-related inquiries and services. Please log in to continue.</p>
-            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center' }}></div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

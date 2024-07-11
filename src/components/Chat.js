@@ -14,6 +14,7 @@ function Chat() {
   const messagesEndRef = useRef(null);
 
   const initGoogleSignIn = useCallback(() => {
+    console.log('Initializing Google Sign-In...');
     window.google.accounts.id.initialize({
       client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
@@ -63,6 +64,7 @@ function Chat() {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' }
     );
+    console.log('Google Sign-In Initialized.');
   }, [navigate]);
 
   const parseJwt = (token) => {
@@ -121,6 +123,7 @@ function Chat() {
   };
 
   useEffect(() => {
+    console.log('Loading Google Sign-In script...');
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.onload = initGoogleSignIn;

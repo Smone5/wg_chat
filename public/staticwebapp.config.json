@@ -7,7 +7,7 @@
       }
     ],
     "navigationFallback": {
-        "rewrite": "/index.html",
-        "exclude": ["/images/*", "/styles/*", "/scripts/*", "/favicon.ico"]
-      }
+      "rewrite": "/index.html",
+      "exclude": ["/images/*", "/.css", "/.js"]
+    }
   }

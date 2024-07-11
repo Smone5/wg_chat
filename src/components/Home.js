@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [idToken, setIdToken] = useState(null);
   const navigate = useNavigate();
 
   const initGoogleSignIn = useCallback(() => {
@@ -15,16 +13,9 @@ function Home() {
           const payload = parseJwt(response.credential);
           if (payload.exp * 1000 < Date.now()) {
             alert('Your session has expired. Please log in again.');
-            setIsLoggedIn(false);
-            setIdToken(null);
             return;
           }
-
-          setIsLoggedIn(true);
-          setIdToken(response.credential);
           navigate('/chat');
-        } else {
-          setIsLoggedIn(false);
         }
       },
     });

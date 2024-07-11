@@ -21,6 +21,14 @@ function App() {
       callback: async (response) => {
         console.log('Google Sign-In Response:', response);
         if (response.credential) {
+          const payload = parseJwt(response.credential);
+          if (payload.exp * 1000 < Date.now()) {
+            alert('Your session has expired. Please log in again.');
+            setIsLoggedIn(false);
+            setIdToken(null);
+            return;
+          }
+
           setIsLoggedIn(true);
           setIdToken(response.credential);
           navigate('/chat');
@@ -58,6 +66,16 @@ function App() {
       { theme: 'outline', size: 'large' }
     );
   }, [navigate]);
+
+  const parseJwt = (token) => {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  };
 
   const createNewSession = async (token) => {
     try {

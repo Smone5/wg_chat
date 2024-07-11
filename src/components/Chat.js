@@ -1,16 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 
 function Chat() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [idToken, setIdToken] = useState(null);
-  const [conversationId, setConversationId] = useState(null);
-  const [isSending, setIsSending] = useState(false);
-  const navigate = useNavigate();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +16,6 @@ function Chat() {
   const handleLogin = () => {
     console.log('User logged in');
     setIsLoggedIn(true);
-    setIdToken('dummy-token');
   };
 
   const handleSubmit = (e) => {
@@ -62,10 +56,10 @@ function Chat() {
   };
 
   const sendButtonStyle = {
-    backgroundColor: isSending ? '#005bb5' : '#0071ce',
+    backgroundColor: '#0071ce',
     color: '#fff',
     borderRadius: '0 20px 20px 0',
-    cursor: isSending ? 'not-allowed' : 'pointer',
+    cursor: 'pointer',
   };
 
   return (
@@ -95,7 +89,7 @@ function Chat() {
                 className="form-control"
                 style={{ borderRadius: '20px 0 0 20px', borderColor: '#0071ce', padding: '10px' }}
               />
-              <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
+              <button type="submit" className="btn" style={sendButtonStyle}>Send</button>
             </form>
           </>
         ) : (

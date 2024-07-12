@@ -248,8 +248,8 @@ function Chat() {
     fontSize: '14px',
     cursor: 'pointer',
     color: '#fff',
-    backgroundColor: '#0071ce',
-    border: '1px solid #0071ce',
+    backgroundColor: '#6c757d',
+    border: '1px solid #6c757d',
     borderRadius: '4px',
     padding: '10px',
     textAlign: 'center',
@@ -264,7 +264,7 @@ function Chat() {
   };
 
   const logoutButtonStyle = {
-    backgroundColor: '#f44336', // Lighter red color for logout
+    backgroundColor: '#f44336',
     borderColor: '#f44336',
     color: '#fff',
     padding: '5px 15px',
@@ -291,14 +291,14 @@ function Chat() {
 
   return (
     <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+      <div className="container my-3 flex-grow-1 d-flex flex-column" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         {isLoggedIn ? (
           <>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mb-2">
               <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
               <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
             </div>
-            <div className="mb-3 flex-grow-1" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <div className="flex-grow-1 mb-2" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
                   <Markdown options={markdownOptions}>{msg.text}</Markdown>
@@ -306,11 +306,7 @@ function Chat() {
               ))}
               <div ref={messagesEndRef} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
-            </div>
-            <form onSubmit={handleSubmit} className="input-group mt-2" style={{ marginBottom: '1rem' }}>
+            <form onSubmit={handleSubmit} className="input-group mt-2 mb-2">
               <input
                 type="text"
                 placeholder="Type a message..."
@@ -321,6 +317,10 @@ function Chat() {
               />
               <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
             </form>
+            <div className="d-flex justify-content-between">
+              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
+              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+            </div>
           </>
         ) : (
           <div className="text-center mt-5">

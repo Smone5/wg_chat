@@ -9,6 +9,16 @@ function Home() {
     navigate('/chat');
   };
 
+  const handlePrivacy = () => {
+    // Navigate to your privacy policy page
+    navigate('/privacy');
+  };
+
+  const handleTerms = () => {
+    // Navigate to your terms of service page
+    navigate('/terms');
+  };
+
   const pageStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -58,6 +68,14 @@ function Home() {
     backgroundColor: '#005bb5',
   };
 
+  const linkStyle = {
+    color: '#0071ce',
+    textDecoration: 'none',
+    fontSize: '0.9rem',
+    margin: '0 0.5rem',
+    cursor: 'pointer',
+  };
+
   return (
     <div style={pageStyle}>
       <div style={containerStyle}>
@@ -76,6 +94,14 @@ function Home() {
         >
           Get Started
         </button>
+        <div style={{ marginTop: '1rem' }}>
+          <span onClick={handlePrivacy} style={linkStyle}>
+            Privacy Policy
+          </span>
+          <span onClick={handleTerms} style={linkStyle}>
+            Terms of Service
+          </span>
+        </div>
       </div>
     </div>
   );

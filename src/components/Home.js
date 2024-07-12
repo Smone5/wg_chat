@@ -10,13 +10,11 @@ function Home() {
   };
 
   const handlePrivacy = () => {
-    // Navigate to your privacy policy page
-    navigate('/privacy');
+    navigate('/privacy-policy');
   };
 
   const handleTerms = () => {
-    // Navigate to your terms of service page
-    navigate('/terms');
+    navigate('/terms-of-service');
   };
 
   const pageStyle = {
@@ -76,6 +74,9 @@ function Home() {
     cursor: 'pointer',
   };
 
+  const email = "admin";
+  const domain = "aivoyages.net";
+
   return (
     <div style={pageStyle}>
       <div style={containerStyle}>
@@ -101,6 +102,9 @@ function Home() {
           <span onClick={handleTerms} style={linkStyle}>
             Terms of Service
           </span>
+        </div>
+        <div style={{ marginTop: '1rem', color: '#555', fontSize: '0.9rem' }}>
+          For inquiries, please email us at <a href={`mailto:${email}@${domain}`} style={{ color: '#0071ce', textDecoration: 'underline' }}>{email}@{domain}</a>.
         </div>
       </div>
     </div>

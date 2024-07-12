@@ -269,18 +269,17 @@ function Chat() {
   };
 
   const logoutButtonStyle = {
-    backgroundColor: '#dc3545', // Red color for logout
-    borderColor: '#dc3545',
+    backgroundColor: '#f44336', // Lighter red color for logout
+    borderColor: '#f44336',
     color: '#fff',
-    padding: '5px 10px',
+    padding: '5px 15px',
     borderRadius: '5px',
     cursor: 'pointer',
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    fontSize: '12px',
+    marginLeft: 'auto',
+    fontSize: '14px',
     fontWeight: 'bold',
     border: 'none',
+    marginTop: '10px',
   };
 
   return (
@@ -288,8 +287,10 @@ function Chat() {
       <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         {isLoggedIn ? (
           <>
-            <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
-            <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
+            <div className="d-flex justify-content-between align-items-center">
+              <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
+              <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
+            </div>
             <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>

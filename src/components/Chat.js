@@ -286,7 +286,7 @@ function Chat() {
     overrides: {
       a: {
         component: ({ children, ...props }) => (
-          <a {...props} style={{ color: '#FFD700', fontWeight: 'bold', textDecoration: 'underline' }}>
+          <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#FFD700', fontWeight: 'bold', textDecoration: 'underline' }}>
             {children}
           </a>
         ),

@@ -14,11 +14,9 @@ function Chat() {
   const messagesEndRef = useRef(null);
 
   const initGoogleSignIn = useCallback(() => {
-    console.log('Initializing Google Sign-In...');
     window.google.accounts.id.initialize({
       client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
-        console.log('Google Sign-In Response:', response);
         if (response.credential) {
           const payload = parseJwt(response.credential);
           if (payload.exp * 1000 < Date.now()) {
@@ -30,7 +28,7 @@ function Chat() {
 
           setIsLoggedIn(true);
           setIdToken(response.credential);
-          localStorage.setItem('idToken', response.credential); // Save the token
+          localStorage.setItem('idToken', response.credential);
           navigate('/chat');
 
           try {
@@ -65,7 +63,6 @@ function Chat() {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' }
     );
-    console.log('Google Sign-In Initialized.');
   }, [navigate]);
 
   const parseJwt = (token) => {
@@ -124,7 +121,6 @@ function Chat() {
   };
 
   useEffect(() => {
-    console.log('Loading Google Sign-In script...');
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.onload = initGoogleSignIn;
@@ -141,7 +137,6 @@ function Chat() {
       } else {
         setIsLoggedIn(true);
         setIdToken(storedToken);
-        console.log('User is logged in with stored token');
         navigate('/chat');
 
         (async () => {
@@ -253,7 +248,7 @@ function Chat() {
     fontSize: '14px',
     cursor: 'pointer',
     color: '#fff',
-    backgroundColor: '#6c757d', // Subdued color for buttons
+    backgroundColor: '#6c757d',
     border: '1px solid #6c757d',
     borderRadius: '4px',
     padding: '10px',
@@ -269,7 +264,7 @@ function Chat() {
   };
 
   const logoutButtonStyle = {
-    backgroundColor: '#f44336', // Lighter red color for logout
+    backgroundColor: '#f44336',
     borderColor: '#f44336',
     color: '#fff',
     padding: '5px 15px',
@@ -286,7 +281,7 @@ function Chat() {
     overrides: {
       a: {
         component: ({ children, ...props }) => (
-          <a {...props} style={{ color: '#ffab00', fontWeight: 'bold', textDecoration: 'underline', wordWrap: 'break-word' }} target="_blank" rel="noopener noreferrer">
+          <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#FFA500', textDecoration: 'underline', wordWrap: 'break-word' }}>
             {children}
           </a>
         ),
@@ -296,14 +291,14 @@ function Chat() {
 
   return (
     <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+      <div className="container my-3 flex-grow-1 d-flex flex-column" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         {isLoggedIn ? (
           <>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-between align-items-center mb-2">
               <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
               <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
             </div>
-            <div className="mb-3 flex-grow-1" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <div className="flex-grow-1 mb-2" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
                   <Markdown options={markdownOptions}>{msg.text}</Markdown>
@@ -311,11 +306,7 @@ function Chat() {
               ))}
               <div ref={messagesEndRef} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
-            </div>
-            <form onSubmit={handleSubmit} className="input-group mt-2">
+            <form onSubmit={handleSubmit} className="input-group mt-2 mb-2">
               <input
                 type="text"
                 placeholder="Type a message..."
@@ -326,6 +317,10 @@ function Chat() {
               />
               <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
             </form>
+            <div className="d-flex justify-content-between">
+              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
+              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+            </div>
           </>
         ) : (
           <div className="text-center mt-5">

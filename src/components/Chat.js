@@ -14,11 +14,9 @@ function Chat() {
   const messagesEndRef = useRef(null);
 
   const initGoogleSignIn = useCallback(() => {
-    console.log('Initializing Google Sign-In...');
     window.google.accounts.id.initialize({
       client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
-        console.log('Google Sign-In Response:', response);
         if (response.credential) {
           const payload = parseJwt(response.credential);
           if (payload.exp * 1000 < Date.now()) {
@@ -30,7 +28,7 @@ function Chat() {
 
           setIsLoggedIn(true);
           setIdToken(response.credential);
-          localStorage.setItem('idToken', response.credential); // Save the token
+          localStorage.setItem('idToken', response.credential);
           navigate('/chat');
 
           try {
@@ -65,7 +63,6 @@ function Chat() {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' }
     );
-    console.log('Google Sign-In Initialized.');
   }, [navigate]);
 
   const parseJwt = (token) => {
@@ -124,7 +121,6 @@ function Chat() {
   };
 
   useEffect(() => {
-    console.log('Loading Google Sign-In script...');
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.onload = initGoogleSignIn;
@@ -141,7 +137,6 @@ function Chat() {
       } else {
         setIsLoggedIn(true);
         setIdToken(storedToken);
-        console.log('User is logged in with stored token');
         navigate('/chat');
 
         (async () => {
@@ -286,7 +281,7 @@ function Chat() {
     overrides: {
       a: {
         component: ({ children, ...props }) => (
-          <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#FFD700', fontWeight: 'bold', textDecoration: 'underline' }}>
+          <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#FFA500', textDecoration: 'underline' }}>
             {children}
           </a>
         ),
@@ -303,7 +298,7 @@ function Chat() {
               <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
               <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
             </div>
-            <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <div className="mb-3 flex-grow-1" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
                   <Markdown options={markdownOptions}>{msg.text}</Markdown>
@@ -315,7 +310,7 @@ function Chat() {
               <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
               <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
             </div>
-            <form onSubmit={handleSubmit} className="input-group mt-2">
+            <form onSubmit={handleSubmit} className="input-group mt-2" style={{ marginBottom: '1rem' }}>
               <input
                 type="text"
                 placeholder="Type a message..."

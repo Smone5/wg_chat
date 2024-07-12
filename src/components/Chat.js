@@ -15,7 +15,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -270,12 +270,11 @@ function Chat() {
     padding: '5px 15px',
     borderRadius: '5px',
     cursor: 'pointer',
+    marginLeft: 'auto',
     fontSize: '14px',
     fontWeight: 'bold',
     border: 'none',
-    position: 'fixed',
-    top: '10px',
-    right: '10px',
+    marginTop: '10px',
   };
 
   const markdownOptions = {

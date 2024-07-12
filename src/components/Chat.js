@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Chat() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [idToken, setIdToken] = useState(null);
+  const [conversationId, setConversationId] = useState(null);
   const [isSending, setIsSending] = useState(false);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
 
   const initGoogleSignIn = useCallback(() => {
+    console.log('Initializing Google Sign-In...');
     window.google.accounts.id.initialize({
       client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
@@ -28,6 +30,7 @@ function Chat() {
 
           setIsLoggedIn(true);
           setIdToken(response.credential);
+          localStorage.setItem('idToken', response.credential); // Save the token
           navigate('/chat');
 
           try {
@@ -62,6 +65,7 @@ function Chat() {
       document.getElementById('google-signin-button'),
       { theme: 'outline', size: 'large' }
     );
+    console.log('Google Sign-In Initialized.');
   }, [navigate]);
 
   const parseJwt = (token) => {
@@ -120,13 +124,54 @@ function Chat() {
   };
 
   useEffect(() => {
+    console.log('Loading Google Sign-In script...');
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.onload = initGoogleSignIn;
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
-  }, [initGoogleSignIn]);
+
+    const storedToken = localStorage.getItem('idToken');
+    if (storedToken) {
+      const payload = parseJwt(storedToken);
+      if (payload.exp * 1000 < Date.now()) {
+        alert('Your session has expired. Please log in again.');
+        localStorage.removeItem('idToken');
+      } else {
+        setIsLoggedIn(true);
+        setIdToken(storedToken);
+        console.log('User is logged in with stored token');
+        navigate('/chat');
+
+        (async () => {
+          try {
+            const res = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/last_session', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${storedToken}`,
+              },
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              const conversationId = data.conversation_id || await createNewSession(storedToken);
+              setConversationId(conversationId);
+
+              if (conversationId) {
+                await fetchSessionMessages(conversationId, storedToken);
+              }
+            } else {
+              throw new Error(`Failed to get last session: ${res.status}`);
+            }
+          } catch (error) {
+            console.error('Error fetching last session:', error);
+          }
+        })();
+      }
+    }
+  }, [initGoogleSignIn, navigate]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -187,7 +232,7 @@ function Chat() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setIdToken(null);
-    setMessages([]);
+    localStorage.removeItem('idToken');
     navigate('/');
   };
 
@@ -243,7 +288,7 @@ function Chat() {
         {isLoggedIn ? (
           <>
             <div className="d-flex justify-content-between align-items-center">
-              <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
+              <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
               <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
             </div>
             <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>

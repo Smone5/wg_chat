@@ -282,6 +282,18 @@ function Chat() {
     marginTop: '10px',
   };
 
+  const markdownOptions = {
+    overrides: {
+      a: {
+        component: ({ children, ...props }) => (
+          <a {...props} style={{ color: '#FFD700', fontWeight: 'bold', textDecoration: 'underline' }}>
+            {children}
+          </a>
+        ),
+      },
+    },
+  };
+
   return (
     <div className="d-flex flex-column vh-100" style={chatStyle}>
       <div className="container my-3 flex-grow-1" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
@@ -294,7 +306,7 @@ function Chat() {
             <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
-                  <Markdown>{msg.text}</Markdown>
+                  <Markdown options={markdownOptions}>{msg.text}</Markdown>
                 </div>
               ))}
               <div ref={messagesEndRef} />

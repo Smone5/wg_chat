@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Chat from './Chat';
-import PrivacyPolicy from './PrivacyPolicy';
-import TermsOfService from './TermsOfService';
-import Contact from './Contact'; // Import the Contact component
+import Home from './components/Home';
+import Chat from './components/Chat';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
+import Contact from './components/Contact'; // Import the Contact component
 
 function App() {
   return (

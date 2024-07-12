@@ -1,13 +1,12 @@
+// src/components/TermsOfService.js
+
 import React from 'react';
 
-function Terms() {
-  return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Terms of Service</h2>
-      <p>This is the terms of service page.</p>
-      {/* Add your terms of service content here */}
-    </div>
-  );
-}
+const TermsOfService = () => (
+  <div>
+    <h1>Terms of Service</h1>
+    <p>Your terms of service content goes here.</p>
+  </div>
+);
 
-export default Terms;
+export default TermsOfService;

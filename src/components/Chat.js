@@ -30,6 +30,7 @@ function Chat() {
 
           setIsLoggedIn(true);
           setIdToken(response.credential);
+          localStorage.setItem('idToken', response.credential); // Save the token
           navigate('/chat');
 
           try {
@@ -130,7 +131,47 @@ function Chat() {
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
-  }, [initGoogleSignIn]);
+
+    const storedToken = localStorage.getItem('idToken');
+    if (storedToken) {
+      const payload = parseJwt(storedToken);
+      if (payload.exp * 1000 < Date.now()) {
+        alert('Your session has expired. Please log in again.');
+        localStorage.removeItem('idToken');
+      } else {
+        setIsLoggedIn(true);
+        setIdToken(storedToken);
+        console.log('User is logged in with stored token');
+        navigate('/chat');
+
+        (async () => {
+          try {
+            const res = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/last_session', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${storedToken}`,
+              },
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              const conversationId = data.conversation_id || await createNewSession(storedToken);
+              setConversationId(conversationId);
+
+              if (conversationId) {
+                await fetchSessionMessages(conversationId, storedToken);
+              }
+            } else {
+              throw new Error(`Failed to get last session: ${res.status}`);
+            }
+          } catch (error) {
+            console.error('Error fetching last session:', error);
+          }
+        })();
+      }
+    }
+  }, [initGoogleSignIn, navigate]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -188,6 +229,13 @@ function Chat() {
     setInput('');
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setIdToken(null);
+    localStorage.removeItem('idToken');
+    navigate('/');
+  };
+
   const chatStyle = {
     background: '#f4f6f8',
     margin: 0,
@@ -226,6 +274,7 @@ function Chat() {
         {isLoggedIn ? (
           <>
             <h2 className="text-center" style={{ color: '#0071ce' }}>Chat with Our Support</h2>
+            <button onClick={handleLogout} style={{ ...buttonStyle, backgroundColor: '#ff0000' }}>Logout</button>
             <div className="mb-3" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', minHeight: '500px', maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>

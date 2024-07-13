@@ -214,9 +214,8 @@ function Chat() {
       setMessages(messages => [...messages, { text: 'Error in response from server.', sender: 'bot' }]);
     } finally {
       setIsSending(false);
+      setInput(''); // Clear the input field here
     }
-
-    setInput('');
   };
 
   const handleClear = () => {

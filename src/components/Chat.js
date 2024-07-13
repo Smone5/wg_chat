@@ -185,6 +185,7 @@ function Chat() {
     if (!userMessage) return;
     setMessages(messages => [...messages, { text: userMessage, sender: 'user' }]);
     setIsSending(true);
+    setInput(''); // Clear the input field immediately
 
     try {
       const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/invoke', {
@@ -214,7 +215,6 @@ function Chat() {
       setMessages(messages => [...messages, { text: 'Error in response from server.', sender: 'bot' }]);
     } finally {
       setIsSending(false);
-      setInput(''); // Clear the input field here
     }
   };
 

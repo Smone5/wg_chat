@@ -87,6 +87,9 @@ function Home() {
         <p style={paragraphStyle}>
           Click "Get Started" below to begin. You'll be prompted to log in with your Google account.
         </p>
+        <p style={paragraphStyle}>
+          We use your Google profile ID to create chatbot sessions unique to you. This helps the chatbot understand what was previously said in a conversation, providing a more personalized and effective experience.
+        </p>
         <button
           onClick={handleLogin}
           style={buttonStyle}

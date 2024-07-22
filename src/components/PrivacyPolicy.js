@@ -5,7 +5,7 @@ import React from 'react';
 const PrivacyPolicy = () => (
   <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif', lineHeight: '1.6' }}>
     <h1>Privacy Policy</h1>
-    <p><strong>Last Updated: July 12, 2024</strong></p>
+    <p><strong>Last Updated: July 22, 2024</strong></p>
     
     <p>
       This Privacy Policy explains how AI Voyages LLC ("we", "us", "our") collects, uses, discloses, and protects your information when you use the Unofficial Walgreens Chatbot ("the Service"). By using the Service, you agree to the collection and use of information in accordance with this policy.
@@ -30,6 +30,7 @@ const PrivacyPolicy = () => (
       <li>To gather analysis or valuable information to improve our Service.</li>
       <li>To monitor the usage of the Service.</li>
       <li>To detect, prevent, and address technical issues.</li>
+      <li>To create unique chatbot sessions tailored to you, helping the chatbot understand previous conversations and provide a personalized experience.</li>
     </ul>
 
     <h2>3. Data Retention</h2>

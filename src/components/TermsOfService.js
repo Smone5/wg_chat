@@ -51,7 +51,7 @@ const TermsOfService = () => (
 
     <h2>9. Governing Law</h2>
     <p>
-      These Terms shall be governed by and construed in accordance with the laws of the State of [Your State], without regard to its conflict of law principles.
+      These Terms shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law principles.
     </p>
 
     <h2>10. Contact Information</h2>

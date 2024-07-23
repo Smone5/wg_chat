@@ -325,6 +325,7 @@ function Chat() {
           <div className="text-center mt-5">
             <h2 style={{ color: '#0071ce' }}>Please Log In</h2>
             <p>To start chatting, please log in with your Google account.</p>
+            <p>We use your Google profile ID to create chatbot sessions unique to you.</p>
             <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center' }}></div>
           </div>
         )}

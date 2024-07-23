@@ -11,6 +11,10 @@ function Home() {
     navigate('/chat');
   };
 
+  const handleLearnMore = () => {
+    navigate('/learn-more');
+  };
+
   return (
     <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3">
       <Helmet>
@@ -34,16 +38,16 @@ function Home() {
           >
             Get started
           </button>
+          <button
+            onClick={handleLearnMore}
+            className="btn btn-light btn-lg mx-2"
+          >
+            Learn more
+          </button>
         </div>
         <p className="text-muted small mb-4">
           When you log in, we collect your Google profile ID to help create a customized chat session unique to you.
         </p>
-        <img
-          src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png"
-          alt="Chatbot assisting with Walgreens inquiries"
-          className="img-fluid mb-4"
-          style={{ maxHeight: '150px' }}
-        />
         <footer className="d-flex justify-content-center mb-3">
           <a className="text-primary mx-2" href="/about">About</a>
           <a className="text-primary mx-2" href="/privacy-policy">Privacy Policy</a>

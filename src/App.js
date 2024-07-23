@@ -7,6 +7,7 @@ import TermsOfService from './components/TermsOfService';
 import Contact from './components/Contact'; // Import the Contact component
 import About from './components/About';
 import LearnMore from './components/LearnMore';
+import Layout from './components/Layout';
 
 function App() {
   return (

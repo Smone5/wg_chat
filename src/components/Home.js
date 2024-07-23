@@ -19,7 +19,7 @@ function Home() {
             <h1 className="text-primary mb-4">Unofficial Walgreens Chatbot</h1>
           </header>
           <img
-            src="https://drive.google.com/uc?export=view&id=1K0HT_wWFIJ-FLoWnW3-uToRhM29ScLdW"
+            src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png"
             alt="Chatbot assisting with Walgreens inquiries"
             className="img-fluid mb-4"
             style={{ maxHeight: '150px' }}

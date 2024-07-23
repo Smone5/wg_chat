@@ -19,12 +19,16 @@ function LearnMore() {
           </p>
           <h2>Features</h2>
           <ul>
-            <li>Check prescription status</li>
             <li>Get information on products and services</li>
             <li>Receive assistance with Walgreens app and website</li>
             <li>Engage in a conversational way to find information</li>
+            <li>Guide users to answers or actions based on their queries</li>
             <li>Remember things you said earlier in the session</li>
           </ul>
+          <h2>Our Approach</h2>
+          <p>
+            Unlike traditional chatbots that rely on canned responses, our chatbot strives to truly listen and understand your questions. By leveraging advanced AI technology, it processes your queries in real-time, providing accurate and helpful responses tailored to your needs.
+          </p>
           <h2>How It Works</h2>
           <p>
             Our chatbot leverages advanced AI technology to understand and respond to your inquiries efficiently. Here's how it works:
@@ -37,6 +41,18 @@ function LearnMore() {
           <h2>Privacy and Data Usage</h2>
           <p>
             Your privacy is important to us. When you log in with your Google account, we collect your profile ID to create a customized chat session. This information is used solely for providing personalized assistance and improving your experience with the chatbot. We do not share your data with third parties.
+          </p>
+          <h2>Future Features</h2>
+          <p>
+            We are continuously working to enhance the capabilities of our chatbot. In the future, we plan to add new features such as:
+          </p>
+          <ul>
+            <li>Finding the nearest Walgreens store</li>
+            <li>Checking your prescription refill status</li>
+            <li>Finding the best Walgreens deals and discounts</li>
+          </ul>
+          <p>
+            Stay tuned for these exciting updates as we strive to provide you with the best possible experience.
           </p>
         </section>
         <footer className="d-flex justify-content-center mb-3">

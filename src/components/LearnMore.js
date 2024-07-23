@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './LearnMore.css';  // Assuming you have a LearnMore.css for additional styles
 
 function LearnMore() {
   const navigate = useNavigate();
@@ -38,8 +39,8 @@ function LearnMore() {
         <section className="mb-5">
           <h2 className="h4 fw-bold">How It Works</h2>
           <ol className="list-unstyled">
-            <li className="mb-2"><i className="bi bi-chevron-right text-primary"></i> You log in using your Google account, allowing us to create a unique chat session.</li>
-            <li className="mb-2"><i className="bi bi-chevron-right text-primary"></i> The chatbot uses your profile information to personalize the conversation and provide relevant assistance.</li>
+            <li className="mb-2"><i className="bi bi-chevron-right text-primary"></i> You log in using your Google account, which allows us to create a unique chat session for you.</li>
+            <li className="mb-2"><i className="bi bi-chevron-right text-primary"></i> The chatbot uses the session information to personalize the conversation and provide relevant assistance based on previous interactions.</li>
             <li className="mb-2"><i className="bi bi-chevron-right text-primary"></i> Our AI technology processes your queries and provides accurate and helpful responses in real-time.</li>
           </ol>
         </section>

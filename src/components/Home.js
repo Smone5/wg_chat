@@ -15,7 +15,6 @@ function Home() {
       <article className="card shadow-lg p-4 w-100" style={{ maxWidth: '600px' }}>
         <div className="card-body text-center">
           <header>
-            <p className="text-danger font-weight-bold mb-3">This chatbot is currently in Beta.</p>
             <h1 className="text-primary mb-4 h3">Unofficial Walgreens Chatbot</h1>
           </header>
           <img
@@ -42,6 +41,7 @@ function Home() {
             Get Started
           </button>
           <footer className="d-flex justify-content-center mb-3">
+            <a className="text-primary mx-2" href="#about">About</a>
             <a className="text-primary mx-2" href="#privacy-policy">Privacy Policy</a>
             <a className="text-primary mx-2" href="#terms-of-service">Terms of Service</a>
           </footer>

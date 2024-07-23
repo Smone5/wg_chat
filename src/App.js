@@ -5,6 +5,7 @@ import Chat from './components/Chat';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Contact from './components/Contact'; // Import the Contact component
+import About from './components/About';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/contact" element={<Contact />} /> {/* Add the Contact route */}
+        <Route path="/about" element={<About />} /> {/* Add the About route */}
       </Routes>
     </Router>
   );

@@ -41,9 +41,9 @@ function Home() {
             Get Started
           </button>
           <footer className="d-flex justify-content-center mb-3">
-            <a className="text-primary mx-2" href="#about">About</a>
-            <a className="text-primary mx-2" href="#privacy-policy">Privacy Policy</a>
-            <a className="text-primary mx-2" href="#terms-of-service">Terms of Service</a>
+            <a className="text-primary mx-2" href="/about">About</a>
+            <a className="text-primary mx-2" href="/privacy-policy">Privacy Policy</a>
+            <a className="text-primary mx-2" href="/terms-of-service">Terms of Service</a>
           </footer>
           <p className="text-center text-muted">
             For inquiries, please email us at <a href="mailto:admin@aivoyages.net" className="text-primary">admin@aivoyages.net</a>.

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';  // Assuming you have a custom CSS file for additional styling
 
 function Home() {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ function Home() {
             <h1 className="text-primary mb-4">Unofficial Walgreens Chatbot</h1>
           </header>
           <img
-            src="https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID"
+            src="https://drive.google.com/uc?export=view&id=1K0HT_wWFIJ-FLoWnW3-uToRhM29ScLdW"
             alt="Chatbot assisting with Walgreens inquiries"
             className="img-fluid mb-4"
             style={{ maxHeight: '150px' }}

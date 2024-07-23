@@ -28,7 +28,7 @@ function Home() {
         </header>
         <section className="mb-4">
           <p className="lead">
-            We have created a smart chatbot to help answer your questions about Walgreens. Connect with our chatbot to get assistance with Walgreens-related inquiries.
+            We have created a smart chatbot to help answer your questions about Walgreens. Connect with our chatbot to get assistance with Walgreens.
           </p>
         </section>
         <div className="d-flex justify-content-center mb-4">

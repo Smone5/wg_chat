@@ -19,7 +19,7 @@ function LearnMore() {
       <article>
         <header className="text-center mb-5">
           <h1 className="display-4 fw-bold">Learn More About Our Walgreens Chatbot</h1>
-          <p className="lead">Discover how our smart chatbot can assist you with Walgreens-related inquiries and enhance your customer experience.</p>
+          <p className="lead">Get help with Walgreens-related questions from our smart chatbot.</p>
         </header>
         <section className="mb-5">
           <h2 className="h4 fw-bold">Features</h2>
@@ -44,8 +44,14 @@ function LearnMore() {
           </ol>
         </section>
         <section className="mb-5">
-          <h2 className="h4 fw-bold">Privacy and Data Usage</h2>
-          <p>Your privacy is important to us. When you log in with your Google account, we collect your profile ID to create a customized chat session. This information is used solely for providing personalized assistance and improving your experience with the chatbot. We do not share your data with third parties.</p>
+          <h2 className="h4 fw-bold">Privacy and Data Security</h2>
+          <p>Your privacy and data security are of utmost importance to us. Here's how we ensure your data is safe:</p>
+          <ul className="list-unstyled">
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> We use secure APIs and databases hosted in the Azure cloud, known for its robust security measures.</li>
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> User logins are managed through Google, meaning we do not store sensitive user information on our servers.</li>
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> By using Google authentication, your login information is handled by Google's secure systems, reducing the risk of data breaches.</li>
+          </ul>
+          <p>We are committed to maintaining the highest standards of data security to protect your personal information.</p>
         </section>
         <section className="mb-5">
           <h2 className="h4 fw-bold">Future Features</h2>

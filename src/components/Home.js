@@ -11,12 +11,12 @@ function Home() {
   };
 
   return (
-    <main className="container-fluid d-flex align-items-center justify-content-center vh-100 bg-light">
-      <article className="card shadow-lg p-4" style={{ maxWidth: '600px', width: '100%' }}>
+    <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3">
+      <article className="card shadow-lg p-4 w-100" style={{ maxWidth: '600px' }}>
         <div className="card-body text-center">
           <header>
-            <p className="text-danger font-weight-bold">This chatbot is currently in Beta.</p>
-            <h1 className="text-primary mb-4">Unofficial Walgreens Chatbot</h1>
+            <p className="text-danger font-weight-bold mb-3">This chatbot is currently in Beta.</p>
+            <h1 className="text-primary mb-4 h3">Unofficial Walgreens Chatbot</h1>
           </header>
           <img
             src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png"

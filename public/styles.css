@@ -1,3 +1,4 @@
+/* Ensure the path to this file is correctly referenced in your components */
 body {
     font-family: 'Roboto', sans-serif;
   }
@@ -16,5 +17,40 @@ body {
   
   a:hover {
     color: #005bb5;
+  }
+  
+  .banner {
+    background: url('path/to/your/banner-image.jpg') no-repeat center center;
+    background-size: cover;
+    height: 60vh; /* Adjust the height as needed */
+    padding-top: 5rem; /* Adjust padding to reduce white space */
+    color: white;
+  }
+  
+  .banner h1,
+  .banner p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .banner h1 span {
+    color: #ffc107; /* Adjust to match your brand colors */
+  }
+  
+  .banner .btn {
+    margin-top: 1rem;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #0056b3 !important;
+  }
+  
+  .navbar {
+    margin-bottom: 1rem;
   }
   

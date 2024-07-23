@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,11 @@ function Home() {
 
   return (
     <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3">
+      <Helmet>
+        <title>Walgreens Chatbot - Walgreens Made Easy</title>
+        <meta name="description" content="Connect with our smart chatbot to get assistance with Walgreens-related inquiries. Our chatbot provides personalized and effective help based on your unique needs." />
+        <meta name="keywords" content="Walgreens chatbot, Walgreens assistance, smart chatbot, Walgreens inquiries" />
+      </Helmet>
       <article className="text-center">
         <header className="mb-4">
           <h1 className="display-4 fw-bold">Walgreens <span className="text-warning">made easy</span></h1>
@@ -29,6 +35,9 @@ function Home() {
             Get started
           </button>
         </div>
+        <p className="text-muted small mb-4">
+          When you log in, we collect your Google profile ID to help create a customized chat session unique to you.
+        </p>
         <img
           src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png"
           alt="Chatbot assisting with Walgreens inquiries"

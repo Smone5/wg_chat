@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Home.css';  // Importing the Home.css file
 
 function Home() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Home() {
   };
 
   return (
-    <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3">
+    <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3 main-container">
       <Helmet>
         <title>Walgreens Chatbot - Innovate with Ease</title>
         <meta name="description" content="Connect with our smart and fun chatbot to get assistance with Walgreens-related inquiries. Our chatbot provides personalized and effective help based on your unique needs." />
@@ -24,7 +25,7 @@ function Home() {
       </Helmet>
       <article className="text-center">
         <header className="mb-4">
-          <h1 className="display-4 fw-bold">Walgreens <span className="text-warning">Made Easy</span></h1>
+          <h1 className="display-4 fw-bold">Walgreens <span className="text-warning">Innovate with Ease</span></h1>
         </header>
         <section className="mb-4">
           <p className="lead">Get help with Walgreens-related questions from our smart, fun, and innovative chatbot.</p>

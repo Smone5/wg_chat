@@ -25,7 +25,7 @@ function Home() {
           <p className="text-danger font-weight-bold">This chatbot is currently in Beta.</p>
           <h2 className="text-primary mb-4">Unofficial Walgreens Chatbot</h2>
           <img
-            src="YOUR_IMAGE_URL" // Replace with your actual image URL
+            src="https://drive.google.com/file/d/1K0HT_wWFIJ-FLoWnW3-uToRhM29ScLdW" // Replace with your actual image URL
             alt="Chatbot"
             className="img-fluid mb-4"
             style={{ maxHeight: '150px' }}

@@ -16,7 +16,7 @@ function Home() {
   };
 
   return (
-    <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3" style={{ marginTop: '-50px' }}>
+    <main className="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-light p-3">
       <Helmet>
         <title>Walgreens Chatbot - Innovate with Ease</title>
         <meta name="description" content="Connect with our smart and fun chatbot to get assistance with Walgreens-related inquiries. Our chatbot provides personalized and effective help based on your unique needs." />

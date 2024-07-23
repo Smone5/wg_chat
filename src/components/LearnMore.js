@@ -17,18 +17,26 @@ function LearnMore() {
           <p className="lead">
             Our smart chatbot is designed to provide personalized assistance for all your Walgreens-related questions. By using your Google profile ID, we create a unique chat session tailored to your needs.
           </p>
+          <h2>Features</h2>
+          <ul>
+            <li>Check prescription status</li>
+            <li>Get information on products and services</li>
+            <li>Receive assistance with Walgreens app and website</li>
+            <li>Engage in a conversational way to find information</li>
+            <li>Remember things you said earlier in the session</li>
+          </ul>
+          <h2>How It Works</h2>
           <p>
-            With our chatbot, you can easily:
-            <ul>
-              <li>Find Walgreens store locations and hours</li>
-              <li>Check prescription status</li>
-              <li>Get information on products and services</li>
-              <li>Receive assistance with Walgreens app and website</li>
-              <li>And much more!</li>
-            </ul>
+            Our chatbot leverages advanced AI technology to understand and respond to your inquiries efficiently. Here's how it works:
           </p>
+          <ol>
+            <li>You log in using your Google account, allowing us to create a unique chat session.</li>
+            <li>The chatbot uses your profile information to personalize the conversation and provide relevant assistance.</li>
+            <li>Our AI technology processes your queries and provides accurate and helpful responses in real-time.</li>
+          </ol>
+          <h2>Privacy and Data Usage</h2>
           <p>
-            Our chatbot leverages advanced AI technology to understand and respond to your inquiries efficiently. Whether you have a simple question or need detailed assistance, our chatbot is here to help.
+            Your privacy is important to us. When you log in with your Google account, we collect your profile ID to create a customized chat session. This information is used solely for providing personalized assistance and improving your experience with the chatbot. We do not share your data with third parties.
           </p>
         </section>
         <footer className="d-flex justify-content-center mb-3">

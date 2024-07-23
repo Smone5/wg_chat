@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../public/styles.css'; // Ensure this path is correct based on your project structure
 
 function Layout({ children }) {
   const location = useLocation();

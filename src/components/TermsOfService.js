@@ -1,64 +1,24 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TermsOfService = () => (
+const About = () => (
   <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif', lineHeight: '1.6' }}>
-    <h1>Terms of Use</h1>
-    <p><strong>Last Updated: July 12, 2024</strong></p>
-    
-    <p>
-      Welcome to the Unofficial Walgreens Chatbot, a service provided by AI Voyages LLC ("we," "us," "our"). By accessing and using this Service, you agree to comply with and be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use our Service.
-    </p>
-
-    <h2>1. Acceptance of Terms</h2>
-    <p>
-      By using our Service, you confirm that you accept these Terms and agree to comply with them.
-    </p>
-
-    <h2>2. Changes to Terms</h2>
-    <p>
-      We reserve the right to modify these Terms at any time. Any changes will be posted on this page, and the date at the top will be updated. Your continued use of the Service after any changes constitutes your acceptance of the new Terms.
-    </p>
-
-    <h2>3. Use of the Service</h2>
-    <p>
-      You agree to use the Service only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the Service. Prohibited behavior includes harassing or causing distress or inconvenience to any other user, transmitting obscene or offensive content, or disrupting the normal flow of dialogue within the Service.
-    </p>
-
-    <h2>4. User Accounts</h2>
-    <p>
-      To access certain features of the Service, you may need to log in using your Google account. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.
-    </p>
-
-    <h2>5. Intellectual Property</h2>
-    <p>
-      All content and materials available through the Service, including but not limited to text, graphics, website name, code, images, and logos, are the intellectual property of AI Voyages LLC and are protected by applicable copyright and trademark law. Unauthorized use of the content may violate copyright, trademark, and other laws.
-    </p>
-
-    <h2>6. Limitation of Liability</h2>
-    <p>
-      To the maximum extent permitted by law, AI Voyages LLC shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or the inability to use the Service, even if AI Voyages LLC has been advised of the possibility of such damages. This includes, but is not limited to, reliance by a user on any information obtained from our Service, or that results from mistakes, omissions, interruptions, deletion of files or email, errors, defects, viruses, delays in operation or transmission, or any failure of performance.
-    </p>
-
-    <h2>7. Privacy Policy</h2>
-    <p>
-      Your use of the Service is also governed by our Privacy Policy, which explains how we collect, use, and disclose information about you. By using the Service, you consent to the practices described in our Privacy Policy.
-    </p>
-
-    <h2>8. Termination</h2>
-    <p>
-      We reserve the right to terminate or suspend your access to the Service at our sole discretion, without notice, for conduct that we believe violates these Terms or is harmful to other users of the Service, us, or third parties, or for any other reason.
-    </p>
-
-    <h2>9. Governing Law</h2>
-    <p>
-      These Terms shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law principles.
-    </p>
-
-    <h2>10. Contact Information</h2>
-    <p>
-      If you have any questions about these Terms, please contact us at: <a href="mailto:admin@aivoyages.net">admin@aivoyages.net</a>
-    </p>
+    <h1>About the Unofficial Walgreens Chatbot</h1>
+    <section>
+      <p className="text-muted mb-3">
+        Hi, I'm Aaron Melton, the creator of the Unofficial Walgreens Chatbot. As a former Senior Natural Language Understanding Analyst at Walgreens, I was dedicated to improving our chatbot's machine learning model. However, due to contract constraints and leadership issues, I found it challenging to make the necessary improvements.
+      </p>
+      <p className="text-muted mb-3">
+        I eventually resigned from Walgreens because I was frustrated with the inaccuracies in reporting a systematic problem. Feeling embarrassed and constrained by the limitations, I decided to create a new chatbot as a part of my job portfolio. This project allowed me to implement the improvements I envisioned and showcase my skills and dedication to enhancing user experiences through advanced machine learning techniques.
+      </p>
+      <p className="text-muted mb-3">
+        This chatbot has a React front end and Langchain backend. It uses Retrieval Augmented Generation (RAG) to look up information and prevent hallucinations. In the future, I may add functions like finding the nearest store, deals/coupons, and other great ideas people suggest. It was designed to be a prototype and scalable.
+      </p>
+      <p className="text-muted mb-3">
+        Thank you for trying out the Unofficial Walgreens Chatbot. I hope it provides you with the assistance you need and demonstrates the potential of what a well-tuned chatbot can achieve.
+      </p>
+    </section>
   </div>
 );
 
-export default TermsOfService;
+export default About;

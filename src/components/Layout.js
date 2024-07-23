@@ -12,7 +12,7 @@ function Layout({ children }) {
           <Link className="navbar-brand d-flex align-items-center" to="/">
             Independent Walgreens Expertise
             <img
-              src="https://example.com/your-icon.png" // Replace with your icon URL
+              src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png" // Replace with your icon URL
               alt="icon"
               style={{ width: '1.5rem', height: '1.5rem', marginLeft: '0.5rem' }}
             />

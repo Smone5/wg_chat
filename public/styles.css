@@ -1,58 +1,78 @@
 /* public/styles.css */
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+img {
+  border-radius: 10px;
+}
+
+a {
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #005bb5;
+}
+
+.banner {
+  background: url('path/to/your/banner-image.jpg') no-repeat center center;
+  background-size: cover;
+  height: 60vh; /* Adjust the height as needed */
+  padding-top: 5rem; /* Adjust padding to reduce white space */
+  color: white;
+}
+
+.banner h1,
+.banner p {
+  margin: 0;
+  padding: 0;
+}
+
+.banner h1 span {
+  color: #ffc107; /* Adjust to match your brand colors */
+}
+
+.banner .btn {
+  margin-top: 1rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  flex-wrap: nowrap; /* Added */
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #0056b3 !important;
+}
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.brand-text {
+  font-size: 1rem; /* Adjust the font size as needed */
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.brand-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .brand-text {
+    font-size: 0.875rem; /* Further reduce font size on smaller screens */
   }
-  
-  .card {
-    border-radius: 10px;
+  .navbar-nav .nav-item .nav-link {
+    font-size: 0.8rem; /* Further adjust font size for mobile */
   }
-  
-  img {
-    border-radius: 10px;
-  }
-  
-  a {
-    transition: color 0.3s;
-  }
-  
-  a:hover {
-    color: #005bb5;
-  }
-  
-  .banner {
-    background: url('path/to/your/banner-image.jpg') no-repeat center center;
-    background-size: cover;
-    height: 60vh; /* Adjust the height as needed */
-    padding-top: 5rem; /* Adjust padding to reduce white space */
-    color: white;
-  }
-  
-  .banner h1,
-  .banner p {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .banner h1 span {
-    color: #ffc107; /* Adjust to match your brand colors */
-  }
-  
-  .banner .btn {
-    margin-top: 1rem;
-  }
-  
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  .navbar-nav .nav-link.active {
-    font-weight: bold;
-    color: #0056b3 !important;
-  }
-  
-  .navbar {
-    margin-bottom: 1rem;
-  }
-  
+}

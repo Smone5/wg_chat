@@ -10,11 +10,11 @@ function Layout({ children }) {
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div className="container-fluid">
           <Link className="navbar-brand d-flex align-items-center" to="/">
-            Independent Walgreens Expertise
+            <span className="brand-text">Independent Walgreens Expertise</span>
             <img
               src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png" // Replace with your icon URL
               alt="icon"
-              style={{ width: '1.5rem', height: '1.5rem', marginLeft: '0.5rem' }}
+              className="brand-icon"
             />
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

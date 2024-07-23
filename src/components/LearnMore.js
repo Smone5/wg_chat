@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './LearnMore.css';  // Assuming you have a LearnMore.css for additional styles
 
 function LearnMore() {
   const navigate = useNavigate();

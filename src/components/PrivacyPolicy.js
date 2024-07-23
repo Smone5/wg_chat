@@ -1,6 +1,7 @@
 // src/components/PrivacyPolicy.js
 
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const PrivacyPolicy = () => (
   <div style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem', fontFamily: 'Arial, sans-serif', lineHeight: '1.6' }}>

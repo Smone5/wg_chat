@@ -7,7 +7,7 @@ function About() {
     <main className="container my-5">
       <Helmet>
         <title>About Us - Walgreens Chatbot</title>
-        <meta name="description" content="Learn more about the innovative and creative team behind the Walgreens Chatbot. Our mission is to push boundaries and enhance customer experiences." />
+        <meta name="description" content="Learn more about the innovative and creative team behind the Independent Walgreens Chatbot. Our mission is to push boundaries and enhance customer experiences." />
       </Helmet>
       <article>
         <header className="text-center mb-5">

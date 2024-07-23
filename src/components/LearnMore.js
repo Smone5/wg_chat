@@ -14,12 +14,12 @@ function LearnMore() {
     <main className="container my-5">
       <Helmet>
         <title>Learn More - Walgreens Chatbot</title>
-        <meta name="description" content="Learn more about our smart chatbot designed to assist with Walgreens-related inquiries. Discover how it works and how it can help you." />
+        <meta name="description" content="Learn more about our smart and fun chatbot designed to assist with Walgreens-related inquiries. Discover how it works and how it can help you." />
       </Helmet>
       <article>
         <header className="text-center mb-5">
           <h1 className="display-4 fw-bold">Learn More About Our Walgreens Chatbot</h1>
-          <p className="lead">Get help with Walgreens-related questions from our smart chatbot.</p>
+          <p className="lead">Get help with Walgreens-related questions from our smart, fun, and innovative chatbot.</p>
         </header>
         <section className="mb-5">
           <h2 className="h4 fw-bold">Features</h2>
@@ -45,13 +45,13 @@ function LearnMore() {
         </section>
         <section className="mb-5">
           <h2 className="h4 fw-bold">Privacy and Data Security</h2>
-          <p>Your privacy and data security are of utmost importance to us. Here's how we ensure your data is safe:</p>
+          <p>Your privacy and data security are of utmost importance to us. Here are the measures we take to ensure the safety and confidentiality of your data:</p>
           <ul className="list-unstyled">
-            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> We use secure APIs and databases hosted in the Azure cloud, known for its robust security measures.</li>
-            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> User logins are managed through Google, meaning we do not store sensitive user information on our servers.</li>
-            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> By using Google authentication, your login information is handled by Google's secure systems, reducing the risk of data breaches.</li>
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> We utilize secure APIs and databases hosted on the Azure cloud platform, renowned for its robust security protocols and compliance with industry standards.</li>
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> User authentication is managed through Google, ensuring that your login credentials are handled by Google's secure systems, minimizing the risk of unauthorized access.</li>
+            <li className="mb-2"><i className="bi bi-shield-lock-fill text-primary"></i> While we do store conversational data to enhance the chatbot experience, it is securely stored in a scalable database on Azure, protected by multiple layers of security.</li>
           </ul>
-          <p>We are committed to maintaining the highest standards of data security to protect your personal information.</p>
+          <p>We are committed to upholding the highest standards of data security and privacy, ensuring that your personal information is always safeguarded.</p>
         </section>
         <section className="mb-5">
           <h2 className="h4 fw-bold">Future Features</h2>
@@ -68,21 +68,14 @@ function LearnMore() {
           <p>Our goal is to push Walgreens to become even better. By providing some chatbot competition, we aim to enhance the customer experience. When there is competition, the Walgreens customer wins with improved services and more innovative solutions.</p>
         </section>
         <div className="text-center mb-5">
-          <button
-            onClick={handleGetStarted}
-            className="btn btn-primary btn-lg"
-          >
-            Get Started
-          </button>
+          <button onClick={handleGetStarted} className="btn btn-primary btn-lg">Get Started</button>
         </div>
         <footer className="d-flex justify-content-center">
           <a className="text-primary mx-2" href="/about">About</a>
           <a className="text-primary mx-2" href="/privacy-policy">Privacy Policy</a>
           <a className="text-primary mx-2" href="/terms-of-service">Terms of Service</a>
         </footer>
-        <p className="text-center text-muted mt-3">
-          For inquiries, please email us at <a href="mailto:admin@aivoyages.net" className="text-primary">admin@aivoyages.net</a>.
-        </p>
+        <p className="text-center text-muted mt-3">For inquiries, please email us at <a href="mailto:admin@aivoyages.net" className="text-primary">admin@aivoyages.net</a>.</p>
       </article>
     </main>
   );

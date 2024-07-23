@@ -24,7 +24,7 @@ function Home() {
       </Helmet>
       <article className="text-center">
         <header className="mb-4">
-          <h1 className="display-4 fw-bold">Walgreens <span className="text-warning">Innovate with Ease</span></h1>
+          <h1 className="display-4 fw-bold">Walgreens <span className="text-warning">Made Easy</span></h1>
         </header>
         <section className="mb-4">
           <p className="lead">Get help with Walgreens-related questions from our smart, fun, and innovative chatbot.</p>

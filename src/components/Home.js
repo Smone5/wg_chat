@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../public/styles.css';  // Assuming your main styles are here
 
 function Home() {
   const navigate = useNavigate();

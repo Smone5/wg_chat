@@ -7,9 +7,16 @@ function Layout({ children }) {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">Independent Walgreens Expertise</Link>
+          <Link className="navbar-brand d-flex align-items-center" to="/">
+            Independent Walgreens Expertise
+            <img
+              src="https://wgchat.blob.core.windows.net/images/android-chrome-192x192.png" // Replace with your icon URL
+              alt="icon"
+              style={{ width: '1.5rem', height: '1.5rem', marginLeft: '0.5rem' }}
+            />
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

@@ -104,7 +104,7 @@ function Home() {
   return (
     <div style={pageStyle}>
       <div style={containerStyle}>
-        <h2 style={titleStyle}>Welcome to the Unofficial Walgreens Chatbot</h2>
+        <h2 style={titleStyle}>Unofficial Walgreens Chatbot</h2>
         <div style={sectionStyle}>
           <FaRobot style={iconStyle} />
           <p style={paragraphStyle}>

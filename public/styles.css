@@ -69,3 +69,33 @@ a:hover {
       font-size: 1rem;
   }
 }
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand .brand-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 0.5rem;
+}
+
+.navbar-brand .brand-text {
+  font-size: 1.25rem; /* Adjust as needed */
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #0056b3 !important;
+}
+
+.navbar {
+  margin-bottom: 1rem;
+}
+

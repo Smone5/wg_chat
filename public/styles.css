@@ -45,7 +45,6 @@ a:hover {
   display: flex;
   align-items: center;
   font-weight: bold;
-  flex-wrap: nowrap; /* Added */
 }
 
 .navbar-nav .nav-link.active {
@@ -57,29 +56,66 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.brand-text {
-  font-size: 1rem; /* Adjust the font size as needed */
-  white-space: nowrap; /* Prevent the text from wrapping */
+#chat-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.brand-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 767px) {
-  .brand-text {
-      font-size: 0.875rem; /* Further reduce font size on smaller screens */
-  }
-  .navbar-nav .nav-item .nav-link {
-      font-size: 0.8rem; /* Further adjust font size for mobile */
-  }
-}
-
-.chat-container {
-  max-height: 80vh; /* Adjust to fit within the viewport */
+#message-list {
+  background: #f4f6f8;
+  border-radius: 8px;
+  padding: 10px;
   overflow-y: auto;
-  margin-top: 2rem; /* Space between the header and chat */
-  padding: 1rem; /* Add padding for better aesthetics */
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+#message-list .user-message {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+#message-list .bot-message {
+  background-color: #0071ce;
+  color: #fff;
+}
+
+#message-form {
+  display: flex;
+}
+
+#message-input {
+  border-radius: 20px 0 0 20px;
+  border-color: #0071ce;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+#send-button {
+  border-radius: 0 20px 20px 0;
+}
+
+#control-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.control-button {
+  width: 45%;
+  margin: 0 2.5%;
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #6c757d;
+  border: 1px solid #6c757d;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
 }

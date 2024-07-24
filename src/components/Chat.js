@@ -15,7 +15,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -230,52 +230,6 @@ function Chat() {
     navigate('/');
   };
 
-  const chatStyle = {
-    background: '#f4f6f8',
-    margin: 0,
-    padding: 0,
-    fontFamily: 'Arial, sans-serif',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-  };
-
-  const buttonStyle = {
-    width: '45%',
-    margin: '0 2.5%',
-    fontSize: '14px',
-    cursor: 'pointer',
-    color: '#fff',
-    backgroundColor: '#6c757d',
-    border: '1px solid #6c757d',
-    borderRadius: '4px',
-    padding: '10px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  };
-
-  const sendButtonStyle = {
-    backgroundColor: isSending ? '#005bb5' : '#0071ce',
-    color: '#fff',
-    borderRadius: '0 20px 20px 0',
-    cursor: isSending ? 'not-allowed' : 'pointer',
-  };
-
-  const logoutButtonStyle = {
-    backgroundColor: '#f44336',
-    borderColor: '#f44336',
-    color: '#fff',
-    padding: '5px 15px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginLeft: 'auto',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    border: 'none',
-    marginTop: '10px',
-  };
-
   const markdownOptions = {
     overrides: {
       a: {
@@ -289,36 +243,36 @@ function Chat() {
   };
 
   return (
-    <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1 d-flex flex-column chat-container" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+    <div className="d-flex flex-column vh-100" id="chat-container">
+      <div className="container my-3 flex-grow-1 d-flex flex-column" id="chat-content">
         {isLoggedIn ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-2">
               <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
-              <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
+              <button onClick={handleLogout} className="btn btn-danger" style={{ marginLeft: 'auto' }}>Logout</button>
             </div>
-            <div className="flex-grow-1 mb-2" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto' }}>
+            <div className="flex-grow-1 mb-2" id="message-list">
               {messages.map((msg, index) => (
-                <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
+                <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'user-message' : 'bot-message'}`} style={{ borderRadius: '8px' }}>
                   <Markdown options={markdownOptions}>{msg.text}</Markdown>
                 </div>
               ))}
               <div ref={messagesEndRef} />
             </div>
-            <form onSubmit={handleSubmit} className="input-group mt-2 mb-2">
+            <form onSubmit={handleSubmit} id="message-form">
               <input
                 type="text"
                 placeholder="Type a message..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                id="message-input"
                 className="form-control"
-                style={{ borderRadius: '20px 0 0 20px', borderColor: '#0071ce', padding: '10px' }}
               />
-              <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
+              <button type="submit" className="btn btn-primary" id="send-button" disabled={isSending}>Send</button>
             </form>
-            <div className="d-flex justify-content-between">
-              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+            <div id="control-buttons">
+              <div className="control-button" onClick={handleClear}>Clear Text</div>
+              <div className="control-button" onClick={() => createNewSession(idToken)}>New Conversation</div>
             </div>
           </>
         ) : (

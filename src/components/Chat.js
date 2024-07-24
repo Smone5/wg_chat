@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Markdown from 'markdown-to-jsx';
 import { useNavigate } from 'react-router-dom';
+import './Chat.css'; // Ensure you have a CSS file for specific styles
 
 function Chat() {
   const [input, setInput] = useState('');
@@ -230,77 +231,19 @@ function Chat() {
     navigate('/');
   };
 
-  const chatStyle = {
-    background: '#f4f6f8',
-    margin: 0,
-    padding: 0,
-    fontFamily: 'Arial, sans-serif',
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-  };
-
-  const buttonStyle = {
-    width: '45%',
-    margin: '0 2.5%',
-    fontSize: '14px',
-    cursor: 'pointer',
-    color: '#fff',
-    backgroundColor: '#6c757d',
-    border: '1px solid #6c757d',
-    borderRadius: '4px',
-    padding: '10px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  };
-
-  const sendButtonStyle = {
-    backgroundColor: isSending ? '#005bb5' : '#0071ce',
-    color: '#fff',
-    borderRadius: '0 20px 20px 0',
-    cursor: isSending ? 'not-allowed' : 'pointer',
-  };
-
-  const logoutButtonStyle = {
-    backgroundColor: '#f44336',
-    borderColor: '#f44336',
-    color: '#fff',
-    padding: '5px 15px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginLeft: 'auto',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    border: 'none',
-    marginTop: '10px',
-  };
-
-  const markdownOptions = {
-    overrides: {
-      a: {
-        component: ({ children, ...props }) => (
-          <a {...props} target="_blank" rel="noopener noreferrer" style={{ color: '#FFA500', textDecoration: 'underline', wordWrap: 'break-word' }}>
-            {children}
-          </a>
-        ),
-      },
-    },
-  };
-
   return (
-    <div className="d-flex flex-column vh-100" style={chatStyle}>
+    <div className="d-flex flex-column vh-100">
       <div className="container my-3 flex-grow-1 d-flex flex-column chat-container">
         {isLoggedIn ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-2">
               <h2 className="text-center chat-title">Chat with Our Support</h2>
-              <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
+              <button onClick={handleLogout} className="btn btn-danger logout-button">Logout</button>
             </div>
             <div className="flex-grow-1 mb-2 chat-messages-container">
               {messages.map((msg, index) => (
-                <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
-                  <Markdown options={markdownOptions}>{msg.text}</Markdown>
+                <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'} chat-message`}>
+                  <Markdown>{msg.text}</Markdown>
                 </div>
               ))}
               <div ref={messagesEndRef} />
@@ -313,19 +256,19 @@ function Chat() {
                 onChange={(e) => setInput(e.target.value)}
                 className="form-control chat-input"
               />
-              <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
+              <button type="submit" className="btn btn-primary send-button" disabled={isSending}>Send</button>
             </form>
             <div className="d-flex justify-content-between">
-              <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+              <button className="btn btn-secondary chat-button" onClick={handleClear}>Clear Text</button>
+              <button className="btn btn-secondary chat-button" onClick={() => createNewSession(idToken)}>New Conversation</button>
             </div>
           </>
         ) : (
           <div className="text-center mt-5">
-            <h2 style={{ color: '#0071ce' }}>Please Log In</h2>
+            <h2 className="chat-title">Please Log In</h2>
             <p>To start chatting, please log in with your Google account.</p>
             <p>We use your Google profile ID to create chatbot sessions unique to you.</p>
-            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center' }}></div>
+            <div id="google-signin-button" className="google-signin-button"></div>
           </div>
         )}
       </div>

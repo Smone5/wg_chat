@@ -37,6 +37,9 @@ function Layout({ children }) {
               <li className="nav-item">
                 <Link className={`nav-link ${location.pathname === '/terms-of-service' ? 'active' : ''}`} to="/terms-of-service">Terms of Service</Link>
               </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${location.pathname === '/chat' ? 'active' : ''}`} to="/chat">Chat</Link>
+              </li>
             </ul>
           </div>
         </div>

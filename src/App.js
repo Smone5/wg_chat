@@ -8,8 +8,10 @@ import Contact from './components/Contact'; // Import the Contact component
 import About from './components/About';
 import LearnMore from './components/LearnMore';
 import Layout from './components/Layout';
+import Chat from './components/Chat';
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Importing Bootstrap Icons
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import $ from 'jquery';
 import Popper from 'popper.js';
@@ -25,12 +27,11 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/learn-more" element={<LearnMore />} />
+          <Route path="/about" element={<About />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/contact" element={<Contact />} /> {/* Add the Contact route */}
-          <Route path="/about" element={<About />} /> {/* Add the About route */}
-          <Route path="/learn-more" element={<LearnMore />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </Layout>
     </Router>

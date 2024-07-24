@@ -8,7 +8,6 @@ import Contact from './components/Contact'; // Import the Contact component
 import About from './components/About';
 import LearnMore from './components/LearnMore';
 import Layout from './components/Layout';
-import Chat from './components/Chat';
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Importing Bootstrap Icons
 import 'bootstrap/dist/css/bootstrap.min.css';
 

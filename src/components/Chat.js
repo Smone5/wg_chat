@@ -15,7 +15,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: 'YOUR_CLIENT_ID',
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -238,7 +238,7 @@ function Chat() {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    height: 'calc(100vh - 56px)',
+    height: '100vh',
   };
 
   const buttonStyle = {
@@ -290,7 +290,7 @@ function Chat() {
 
   return (
     <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1 d-flex flex-column" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+      <div className="container my-3 flex-grow-1 d-flex flex-column chat-container" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
         {isLoggedIn ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-2">

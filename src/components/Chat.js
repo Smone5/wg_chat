@@ -290,14 +290,14 @@ function Chat() {
 
   return (
     <div className="d-flex flex-column vh-100" style={chatStyle}>
-      <div className="container my-3 flex-grow-1 d-flex flex-column chat-container" style={{ background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+      <div className="container my-3 flex-grow-1 d-flex flex-column chat-container">
         {isLoggedIn ? (
           <>
             <div className="d-flex justify-content-between align-items-center mb-2">
-              <h2 className="text-center" style={{ color: '#0071ce', flex: 1 }}>Chat with Our Support</h2>
+              <h2 className="text-center chat-title">Chat with Our Support</h2>
               <button onClick={handleLogout} style={logoutButtonStyle}>Logout</button>
             </div>
-            <div className="flex-grow-1 mb-2" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto' }}>
+            <div className="flex-grow-1 mb-2 chat-messages-container">
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-light' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
                   <Markdown options={markdownOptions}>{msg.text}</Markdown>
@@ -311,8 +311,7 @@ function Chat() {
                 placeholder="Type a message..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="form-control"
-                style={{ borderRadius: '20px 0 0 20px', borderColor: '#0071ce', padding: '10px' }}
+                className="form-control chat-input"
               />
               <button type="submit" className="btn" style={sendButtonStyle} disabled={isSending}>Send</button>
             </form>

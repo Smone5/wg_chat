@@ -70,9 +70,16 @@ a:hover {
 
 @media (max-width: 767px) {
   .brand-text {
-    font-size: 0.875rem; /* Further reduce font size on smaller screens */
+      font-size: 0.875rem; /* Further reduce font size on smaller screens */
   }
   .navbar-nav .nav-item .nav-link {
-    font-size: 0.8rem; /* Further adjust font size for mobile */
+      font-size: 0.8rem; /* Further adjust font size for mobile */
   }
+}
+
+.chat-container {
+  max-height: 80vh; /* Adjust to fit within the viewport */
+  overflow-y: auto;
+  margin-top: 2rem; /* Space between the header and chat */
+  padding: 1rem; /* Add padding for better aesthetics */
 }

@@ -11,14 +11,13 @@ function Chat() {
   const [idToken, setIdToken] = useState(null);
   const [conversationId, setConversationId] = useState(null);
   const [isSending, setIsSending] = useState(false);
-  const [isAnonymous, setIsAnonymous] = useState(false);
   const [isOver18, setIsOver18] = useState(false);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -74,7 +73,7 @@ function Chat() {
     try {
       const base64Url = token.split('.')[1];
       if (!base64Url) {
-        throw new Error("Invalid token format");
+        return null; // Handle non-JWT tokens gracefully
       }
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
@@ -140,7 +139,6 @@ function Chat() {
 
     const randomSessionId = uuidv4();
     setIsLoggedIn(true);
-    setIsAnonymous(true);
     setIdToken(randomSessionId);
     localStorage.setItem('idToken', randomSessionId);
     navigate('/chat');

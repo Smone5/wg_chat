@@ -96,11 +96,11 @@ function Chat() {
           'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       const data = await response.json();
       setConversationId(data.conversation_id);
       setMessages([]);

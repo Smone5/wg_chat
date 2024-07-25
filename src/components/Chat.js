@@ -73,18 +73,20 @@ function Chat() {
   const parseJwt = (token) => {
     try {
       const base64Url = token.split('.')[1];
+      if (!base64Url) {
+        throw new Error("Invalid token format");
+      }
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
-
       return JSON.parse(jsonPayload);
     } catch (error) {
       console.error('Invalid token', error);
       return null;
     }
   };
-
+  
   const createNewSession = async (token) => {
     try {
       const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {

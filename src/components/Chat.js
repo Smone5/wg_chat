@@ -18,7 +18,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID',
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -88,13 +88,18 @@ function Chat() {
   };
 
   const createNewSession = async (token) => {
+    const endpoint = isAnonymous ? 'https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/anonymous_session' : 'https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session';
     try {
-      const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
+        body: JSON.stringify(isAnonymous ? {
+          user_id: token,
+          session_id: uuidv4()
+        } : {})
       });
 
       if (!response.ok) {
@@ -138,7 +143,7 @@ function Chat() {
       return;
     }
 
-    const randomSessionId = uuidv4();
+    const randomSessionId = `anon_${uuidv4()}`;
     setIsLoggedIn(true);
     setIsAnonymous(true);
     setIdToken(randomSessionId);

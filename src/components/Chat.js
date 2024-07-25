@@ -220,7 +220,7 @@ function Chat() {
 
     const userMessage = input.trim();
     if (!userMessage) return;
-    setMessages(messages => [...messages, { text: userMessage, sender: 'user' }]);
+    setMessages((messages) => [...messages, { text: userMessage, sender: 'user' }]);
     setIsSending(true);
     setInput(''); // Clear the input field immediately
 
@@ -235,7 +235,7 @@ function Chat() {
         body: JSON.stringify({
           input: { input: userMessage },
           config: {
-            configurable: { conversation_id: conversationId },
+            conversation_id: conversationId,
           },
         }),
       });
@@ -246,10 +246,10 @@ function Chat() {
 
       const data = await response.json();
       const outputMessage = data.output?.content || 'No output available';
-      setMessages(messages => [...messages, { text: outputMessage, sender: 'bot' }]);
+      setMessages((messages) => [...messages, { text: outputMessage, sender: 'bot' }]);
     } catch (error) {
       console.error('Error:', error);
-      setMessages(messages => [...messages, { text: 'Error in response from server.', sender: 'bot' }]);
+      setMessages((messages) => [...messages, { text: 'Error in response from server.', sender: 'bot' }]);
     } finally {
       setIsSending(false);
     }
@@ -363,7 +363,7 @@ function Chat() {
             <h2 style={{ color: '#0071ce' }}>Please Log In</h2>
             <p>To start chatting, please log in with your Google account or continue anonymously.</p>
             <p>We use your Google profile ID or a unique session ID to create chatbot sessions unique to you.</p>
-            <div id="google-signin-button" style={{ display: 'flex', justify-content: 'center', marginBottom: '1rem' }}></div>
+            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}></div>
             <button onClick={handleAnonymousLogin} style={{ ...buttonStyle, backgroundColor: '#0071ce' }}>Continue Anonymously</button>
             <div className="form-check mt-3">
               <input type="checkbox" className="form-check-input" id="ageCheck" onChange={() => setIsOver18(!isOver18)} />

@@ -18,7 +18,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
+      client_id: 'YOUR_GOOGLE_CLIENT_ID',
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -45,7 +45,7 @@ function Chat() {
 
             if (res.ok) {
               const data = await res.json();
-              const conversationId = data.conversation_id || await createNewSession(response.credential);
+              const conversationId = data.conversation_id || await createNewGoogleSession(response.credential);
               setConversationId(conversationId);
 
               if (conversationId) {
@@ -87,19 +87,41 @@ function Chat() {
     }
   };
 
-  const createNewSession = async (token) => {
-    const endpoint = isAnonymous ? 'https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/anonymous_session' : 'https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session';
+  const createNewGoogleSession = async (token) => {
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(isAnonymous ? {
-          user_id: token,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setConversationId(data.conversation_id);
+      setMessages([]);
+      return data.conversation_id;
+    } catch (error) {
+      console.error('Error creating new session:', error);
+      return null;
+    }
+  };
+
+  const createNewAnonymousSession = async (user_id) => {
+    try {
+      const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/anonymous_session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: user_id,
           session_id: `anon_${uuidv4()}`
-        } : {})
+        })
       });
 
       if (!response.ok) {
@@ -143,7 +165,6 @@ function Chat() {
       return;
     }
 
-    const randomSessionId = `anon_${uuidv4()}`;
     const randomUserId = `anon_${uuidv4()}`;
     setIsLoggedIn(true);
     setIsAnonymous(true);
@@ -152,7 +173,7 @@ function Chat() {
     navigate('/chat');
 
     try {
-      const conversationId = await createNewSession(randomUserId);
+      const conversationId = await createNewAnonymousSession(randomUserId);
       setConversationId(conversationId);
 
       if (conversationId) {
@@ -194,7 +215,7 @@ function Chat() {
 
             if (res.ok) {
               const data = await res.json();
-              const conversationId = data.conversation_id || await createNewSession(storedToken);
+              const conversationId = data.conversation_id || (isAnonymous ? await createNewAnonymousSession(storedToken) : await createNewGoogleSession(storedToken));
               setConversationId(conversationId);
 
               if (conversationId) {
@@ -361,7 +382,7 @@ function Chat() {
             </form>
             <div className="d-flex justify-content-between">
               <div style={buttonStyle} onClick={handleClear}>Clear Text</div>
-              <div style={buttonStyle} onClick={() => createNewSession(idToken)}>New Conversation</div>
+              <div style={buttonStyle} onClick={() => createNewGoogleSession(idToken)}>New Conversation</div>
             </div>
           </>
         ) : (

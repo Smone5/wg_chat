@@ -89,12 +89,6 @@ function Chat() {
   
   const createNewSession = async (token) => {
     try {
-      // Validate the token before using it
-      const payload = parseJwt(token);
-      if (!payload || payload.exp * 1000 < Date.now()) {
-        throw new Error("Invalid or expired token");
-      }
-  
       const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {
         method: 'POST',
         headers: {
@@ -102,18 +96,12 @@ function Chat() {
           'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       const data = await response.json();
-  
-      // Check if the conversation_id property exists in the response data
-      if (!data.conversation_id) {
-        throw new Error("Missing conversation_id in response");
-      }
-  
       setConversationId(data.conversation_id);
       setMessages([]);
       return data.conversation_id;
@@ -125,12 +113,6 @@ function Chat() {
 
   const fetchSessionMessages = async (conversationId, token) => {
     try {
-      // Validate the token before using it
-      const payload = parseJwt(token);
-      if (!payload || payload.exp * 1000 < Date.now()) {
-        throw new Error("Invalid or expired token");
-      }
-  
       const response = await fetch(`https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/session_messages?conversation_id=${conversationId}`, {
         method: 'GET',
         headers: {
@@ -138,11 +120,11 @@ function Chat() {
           'Authorization': `Bearer ${token}`,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       const data = await response.json();
       setMessages(data.messages || []);
     } catch (error) {

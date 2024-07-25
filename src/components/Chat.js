@@ -18,7 +18,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com', // Replace with your actual Client ID
+      client_id: 'YOUR_GOOGLE_CLIENT_ID',
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -86,7 +86,7 @@ function Chat() {
       return null;
     }
   };
-  
+
   const createNewSession = async (token) => {
     try {
       const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {
@@ -138,7 +138,6 @@ function Chat() {
       return;
     }
 
-    // Generate a random session ID for the anonymous user
     const randomSessionId = uuidv4();
     setIsLoggedIn(true);
     setIsAnonymous(true);
@@ -147,11 +146,9 @@ function Chat() {
     navigate('/chat');
 
     try {
-      // Directly create a new session for the anonymous user
       const conversationId = await createNewSession(randomSessionId);
       setConversationId(conversationId);
 
-      // Fetch messages for the new session
       if (conversationId) {
         await fetchSessionMessages(conversationId, randomSessionId);
       }
@@ -366,7 +363,7 @@ function Chat() {
             <h2 style={{ color: '#0071ce' }}>Please Log In</h2>
             <p>To start chatting, please log in with your Google account or continue anonymously.</p>
             <p>We use your Google profile ID or a unique session ID to create chatbot sessions unique to you.</p>
-            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}></div>
+            <div id="google-signin-button" style={{ display: 'flex', justify-content: 'center', marginBottom: '1rem' }}></div>
             <button onClick={handleAnonymousLogin} style={{ ...buttonStyle, backgroundColor: '#0071ce' }}>Continue Anonymously</button>
             <div className="form-check mt-3">
               <input type="checkbox" className="form-check-input" id="ageCheck" onChange={() => setIsOver18(!isOver18)} />

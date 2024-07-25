@@ -86,7 +86,7 @@ function Chat() {
       return null;
     }
   };
-  
+
   const createNewSession = async (token) => {
     try {
       const response = await fetch('https://wg-chat-3.redforest-2cd4b5e7.eastus2.azurecontainerapps.io/new_session', {

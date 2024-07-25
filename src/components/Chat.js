@@ -22,7 +22,7 @@ function Chat() {
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
-          if (payload.exp * 1000 < Date.now()) {
+          if (payload && payload.exp * 1000 < Date.now()) {
             alert('Your session has expired. Please log in again.');
             setIsLoggedIn(false);
             setIdToken(null);
@@ -62,20 +62,27 @@ function Chat() {
         }
       },
     });
-    window.google.accounts.id.renderButton(
-      document.getElementById('google-signin-button'),
-      { theme: 'outline', size: 'large' }
-    );
+    const googleSignInButton = document.getElementById('google-signin-button');
+    if (googleSignInButton) {
+      window.google.accounts.id.renderButton(googleSignInButton, { theme: 'outline', size: 'large' });
+    } else {
+      console.error('Google Sign-In button element not found');
+    }
   }, [navigate]);
 
   const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
 
-    return JSON.parse(jsonPayload);
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('Invalid token', error);
+      return null;
+    }
   };
 
   const createNewSession = async (token) => {
@@ -151,7 +158,7 @@ function Chat() {
     const storedToken = localStorage.getItem('idToken');
     if (storedToken) {
       const payload = parseJwt(storedToken);
-      if (payload.exp * 1000 < Date.now()) {
+      if (payload && payload.exp * 1000 < Date.now()) {
         alert('Your session has expired. Please log in again.');
         localStorage.removeItem('idToken');
       } else {

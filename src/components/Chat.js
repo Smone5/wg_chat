@@ -138,6 +138,7 @@ function Chat() {
       return;
     }
 
+    // Generate a random session ID for the anonymous user
     const randomSessionId = uuidv4();
     setIsLoggedIn(true);
     setIsAnonymous(true);
@@ -145,8 +146,18 @@ function Chat() {
     localStorage.setItem('idToken', randomSessionId);
     navigate('/chat');
 
-    const conversationId = await createNewSession(randomSessionId);
-    setConversationId(conversationId);
+    try {
+      // Directly create a new session for the anonymous user
+      const conversationId = await createNewSession(randomSessionId);
+      setConversationId(conversationId);
+
+      // Fetch messages for the new session
+      if (conversationId) {
+        await fetchSessionMessages(conversationId, randomSessionId);
+      }
+    } catch (error) {
+      console.error('Error creating new session:', error);
+    }
   };
 
   useEffect(() => {

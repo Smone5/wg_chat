@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Markdown from 'markdown-to-jsx';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 function Chat() {
   const [input, setInput] = useState('');
@@ -10,6 +11,8 @@ function Chat() {
   const [idToken, setIdToken] = useState(null);
   const [conversationId, setConversationId] = useState(null);
   const [isSending, setIsSending] = useState(false);
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [isOver18, setIsOver18] = useState(false);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
 
@@ -118,6 +121,21 @@ function Chat() {
     } catch (error) {
       console.error('Error fetching session messages:', error);
     }
+  };
+
+  const handleAnonymousLogin = async () => {
+    if (!isOver18) {
+      alert('You must be over 18 to use this site.');
+      return;
+    }
+
+    setIsLoggedIn(true);
+    setIsAnonymous(true);
+    const randomSessionId = uuidv4();
+    setIdToken(randomSessionId);
+    localStorage.setItem('idToken', randomSessionId);
+    navigate('/chat');
+    await createNewSession(randomSessionId);
   };
 
   useEffect(() => {
@@ -324,9 +342,14 @@ function Chat() {
         ) : (
           <div className="text-center mt-5">
             <h2 style={{ color: '#0071ce' }}>Please Log In</h2>
-            <p>To start chatting, please log in with your Google account.</p>
-            <p>We use your Google profile ID to create chatbot sessions unique to you.</p>
-            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center' }}></div>
+            <p>To start chatting, please log in with your Google account or continue anonymously.</p>
+            <p>We use your Google profile ID or a unique session ID to create chatbot sessions unique to you.</p>
+            <div id="google-signin-button" style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}></div>
+            <button onClick={handleAnonymousLogin} style={{ ...buttonStyle, backgroundColor: '#0071ce' }}>Continue Anonymously</button>
+            <div className="form-check mt-3">
+              <input type="checkbox" className="form-check-input" id="ageCheck" onChange={() => setIsOver18(!isOver18)} />
+              <label className="form-check-label" htmlFor="ageCheck">I am over 18 and acknowledge how my data is stored.</label>
+            </div>
           </div>
         )}
       </div>

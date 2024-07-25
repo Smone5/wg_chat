@@ -129,13 +129,15 @@ function Chat() {
       return;
     }
 
+    const randomSessionId = uuidv4();
     setIsLoggedIn(true);
     setIsAnonymous(true);
-    const randomSessionId = uuidv4();
     setIdToken(randomSessionId);
     localStorage.setItem('idToken', randomSessionId);
     navigate('/chat');
-    await createNewSession(randomSessionId);
+
+    const conversationId = await createNewSession(randomSessionId);
+    setConversationId(conversationId);
   };
 
   useEffect(() => {

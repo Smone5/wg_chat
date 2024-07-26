@@ -18,7 +18,7 @@ function Chat() {
 
   const initGoogleSignIn = useCallback(() => {
     window.google.accounts.id.initialize({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID',
+      client_id: '88973414867-h7amkrgb8s3onoopm4a3jaaddtjoefas.apps.googleusercontent.com',
       callback: async (response) => {
         if (response.credential) {
           const payload = parseJwt(response.credential);
@@ -72,6 +72,9 @@ function Chat() {
 
   const parseJwt = (token) => {
     try {
+      if (typeof token !== 'string') {
+        throw new Error("Invalid token format");
+      }
       const base64Url = token.split('.')[1];
       if (!base64Url) {
         throw new Error("Invalid token format");
@@ -262,7 +265,10 @@ function Chat() {
         body: JSON.stringify({
           input: { input: userMessage },
           config: {
-            conversation_id: conversationId,
+            configurable: {
+              conversation_id: conversationId,
+              user_id: idToken,
+            }
           },
         }),
       });
@@ -364,7 +370,7 @@ function Chat() {
             <div className="flex-grow-1 mb-2" style={{ background: '#f4f6f8', borderRadius: '8px', padding: '10px', overflowY: 'auto' }}>
               {messages.map((msg, index) => (
                 <div key={index} className={`p-2 my-1 ${msg.sender === 'user' ? 'bg-secondary text-white' : 'bg-primary text-white'}`} style={{ borderRadius: '8px' }}>
-                  <Markdown options={markdownOptions}>{msg.text}</Markdown>
+                  <Markdown options={markdownOptions}>{typeof msg.text === 'string' ? msg.text : 'Invalid message content'}</Markdown>
                 </div>
               ))}
               <div ref={messagesEndRef} />

@@ -35,7 +35,7 @@ function Chat() {
           navigate('/chat');
 
           try {
-            const res = await fetch('https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/last_session', {
+            const res = await fetch('https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/last_session', {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ function Chat() {
 
   const createNewGoogleSession = async (token) => {
     try {
-      const response = await fetch('https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/new_session', {
+      const response = await fetch('https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/new_session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ function Chat() {
 
   const createNewAnonymousSession = async (user_id) => {
     try {
-      const response = await fetch('https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/anonymous_session', {
+      const response = await fetch('https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/anonymous_session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ function Chat() {
 
   const fetchSessionMessages = async (conversationId, token) => {
     try {
-      const response = await fetch(`https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/session_messages?conversation_id=${conversationId}`, {
+      const response = await fetch(`https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/session_messages?conversation_id=${conversationId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +208,7 @@ function Chat() {
 
         (async () => {
           try {
-            const res = await fetch('https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/last_session', {
+            const res = await fetch('https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/last_session', {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -255,7 +255,7 @@ function Chat() {
     setInput(''); // Clear the input field immediately
 
     try {
-      const response = await fetch('https://wg-chat-back-1-uc3dnamedq-uc.a.run.app/invoke', {
+      const response = await fetch('https://wg-chat-back-1-vojqi4hwqq-uc.a.run.app/invoke', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
